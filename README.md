@@ -26,18 +26,25 @@ A full-featured MCP (Model Context Protocol) server for [Raindrop.io](https://ra
 
 ## Installation
 
-### Option 1: Docker (Recommended)
+### Option 1: Download from Releases
+
+Download from [GitHub Releases](https://github.com/FyziGo/Raindrop-MCP/releases/latest):
+
+| File | Description |
+|------|-------------|
+| `raindrop-mcp.exe` | Windows binary |
+| `raindrop-mcp-docker.zip` | Docker image |
+| `raindrop-mcp.mcpb` | MCPB installer |
+
+### Option 2: Docker
 
 ```bash
-docker run -i --rm -e RAINDROP_TOKEN=your_token fyzigo/raindrop-mcp
+# From release (download and extract docker.zip first)
+docker load -i raindrop-mcp-docker.tar
+docker run -i --rm -e RAINDROP_TOKEN=your_token raindrop-mcp
 ```
 
-Or via Docker Desktop MCP Toolkit:
-1. Open Docker Desktop → MCP Toolkit
-2. Search for "raindrop-mcp"
-3. Click Install and configure your API token
-
-### Option 2: Build from Source
+### Option 3: Build from Source
 
 ```bash
 git clone https://github.com/FyziGo/Raindrop-MCP.git
