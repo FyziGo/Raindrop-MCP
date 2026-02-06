@@ -194,69 +194,69 @@ func RegisterExtendedTools(server *mcp.Server, client *api.Client) {
 // Input types for extended tools
 
 type CreateCollectionInput struct {
-	Title  string `json:"title" jsonschema:"description=Collection title,required"`
-	Parent int    `json:"parent,omitempty" jsonschema:"description=Parent collection ID (0 for root)"`
-	Public bool   `json:"public,omitempty" jsonschema:"description=Make collection public"`
+	Title  string `json:"title" jsonschema:"Collection title"`
+	Parent int    `json:"parent,omitempty" jsonschema:"Parent collection ID (0 for root)"`
+	Public bool   `json:"public,omitempty" jsonschema:"Make collection public"`
 }
 
 type GetCollectionInput struct {
-	ID int `json:"id" jsonschema:"description=Collection ID,required"`
+	ID int `json:"id" jsonschema:"Collection ID"`
 }
 
 type UpdateCollectionInput struct {
-	ID     int    `json:"id" jsonschema:"description=Collection ID,required"`
-	Title  string `json:"title,omitempty" jsonschema:"description=New title"`
-	Parent int    `json:"parent,omitempty" jsonschema:"description=New parent collection ID"`
-	Public *bool  `json:"public,omitempty" jsonschema:"description=Make public or private"`
+	ID     int    `json:"id" jsonschema:"Collection ID"`
+	Title  string `json:"title,omitempty" jsonschema:"New title"`
+	Parent int    `json:"parent,omitempty" jsonschema:"New parent collection ID"`
+	Public *bool  `json:"public,omitempty" jsonschema:"Make public or private"`
 }
 
 type DeleteCollectionInput struct {
-	ID int `json:"id" jsonschema:"description=Collection ID to delete,required"`
+	ID int `json:"id" jsonschema:"Collection ID to delete"`
 }
 
 type MergeCollectionsInput struct {
-	IDs      []int `json:"ids" jsonschema:"description=Collection IDs to merge,required"`
-	TargetID int   `json:"target_id" jsonschema:"description=Target collection ID,required"`
+	IDs      []int `json:"ids" jsonschema:"Collection IDs to merge"`
+	TargetID int   `json:"target_id" jsonschema:"Target collection ID"`
 }
 
 type RenameTagInput struct {
-	Collection int    `json:"collection,omitempty" jsonschema:"description=Collection ID (0 for all)"`
-	OldName    string `json:"old_name" jsonschema:"description=Current tag name,required"`
-	NewName    string `json:"new_name" jsonschema:"description=New tag name,required"`
+	Collection int    `json:"collection,omitempty" jsonschema:"Collection ID (0 for all)"`
+	OldName    string `json:"old_name" jsonschema:"Current tag name"`
+	NewName    string `json:"new_name" jsonschema:"New tag name"`
 }
 
 type DeleteTagsInput struct {
-	Collection int      `json:"collection,omitempty" jsonschema:"description=Collection ID (0 for all)"`
-	Tags       []string `json:"tags" jsonschema:"description=Tag names to delete,required"`
+	Collection int      `json:"collection,omitempty" jsonschema:"Collection ID (0 for all)"`
+	Tags       []string `json:"tags" jsonschema:"Tag names to delete"`
 }
 
 type MergeTagsInput struct {
-	Collection int      `json:"collection,omitempty" jsonschema:"description=Collection ID (0 for all)"`
-	Tags       []string `json:"tags" jsonschema:"description=Tags to merge (first becomes target),required"`
+	Collection int      `json:"collection,omitempty" jsonschema:"Collection ID (0 for all)"`
+	Tags       []string `json:"tags" jsonschema:"Tags to merge (first becomes target)"`
 }
 
 type GetHighlightsInput struct {
-	RaindropID int `json:"raindrop_id,omitempty" jsonschema:"description=Bookmark ID (0 for all highlights)"`
+	RaindropID int `json:"raindrop_id,omitempty" jsonschema:"Bookmark ID (0 for all highlights)"`
 }
 
 type CreateHighlightInput struct {
-	RaindropID int    `json:"raindrop_id" jsonschema:"description=Bookmark ID,required"`
-	Text       string `json:"text" jsonschema:"description=Highlighted text,required"`
-	Note       string `json:"note,omitempty" jsonschema:"description=Note about the highlight"`
-	Color      string `json:"color,omitempty" jsonschema:"description=Highlight color (blue, red, yellow, green)"`
+	RaindropID int    `json:"raindrop_id" jsonschema:"Bookmark ID"`
+	Text       string `json:"text" jsonschema:"Highlighted text"`
+	Note       string `json:"note,omitempty" jsonschema:"Note about the highlight"`
+	Color      string `json:"color,omitempty" jsonschema:"Highlight color (blue, red, yellow, green)"`
 }
 
 type DeleteHighlightInput struct {
-	RaindropID  int    `json:"raindrop_id" jsonschema:"description=Bookmark ID,required"`
-	HighlightID string `json:"highlight_id" jsonschema:"description=Highlight ID,required"`
+	RaindropID  int    `json:"raindrop_id" jsonschema:"Bookmark ID"`
+	HighlightID string `json:"highlight_id" jsonschema:"Highlight ID"`
 }
 
 type GetFiltersInput struct {
-	Collection int `json:"collection" jsonschema:"description=Collection ID,required"`
+	Collection int `json:"collection" jsonschema:"Collection ID"`
 }
 
 type SuggestTagsInput struct {
-	URL string `json:"url" jsonschema:"description=URL to get tag suggestions for,required"`
+	URL string `json:"url" jsonschema:"URL to get tag suggestions for"`
 }
 
 // Formatting helpers

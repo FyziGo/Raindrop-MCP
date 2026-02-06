@@ -116,38 +116,38 @@ func RegisterTools(server *mcp.Server, client *api.Client) {
 // Input types
 
 type CreateBookmarkInput struct {
-	URL        string   `json:"url" jsonschema:"description=URL to bookmark,required"`
-	Title      string   `json:"title,omitempty" jsonschema:"description=Title for the bookmark"`
-	Tags       []string `json:"tags,omitempty" jsonschema:"description=Tags for the bookmark"`
-	Collection int      `json:"collection,omitempty" jsonschema:"description=Collection ID to save to (0 for Unsorted)"`
+	URL        string   `json:"url" jsonschema:"URL to bookmark"`
+	Title      string   `json:"title,omitempty" jsonschema:"Title for the bookmark"`
+	Tags       []string `json:"tags,omitempty" jsonschema:"Tags for the bookmark"`
+	Collection int      `json:"collection,omitempty" jsonschema:"Collection ID to save to (0 for Unsorted)"`
 }
 
 type GetBookmarkInput struct {
-	ID int `json:"id" jsonschema:"description=Bookmark ID,required"`
+	ID int `json:"id" jsonschema:"Bookmark ID"`
 }
 
 type UpdateBookmarkInput struct {
-	ID         int      `json:"id" jsonschema:"description=Bookmark ID to update,required"`
-	Title      string   `json:"title,omitempty" jsonschema:"description=New title"`
-	Note       string   `json:"note,omitempty" jsonschema:"description=Note/description"`
-	Tags       []string `json:"tags,omitempty" jsonschema:"description=New tags (replaces existing)"`
-	Collection int      `json:"collection,omitempty" jsonschema:"description=Move to collection ID"`
+	ID         int      `json:"id" jsonschema:"Bookmark ID to update"`
+	Title      string   `json:"title,omitempty" jsonschema:"New title"`
+	Note       string   `json:"note,omitempty" jsonschema:"Note/description"`
+	Tags       []string `json:"tags,omitempty" jsonschema:"New tags (replaces existing)"`
+	Collection int      `json:"collection,omitempty" jsonschema:"Move to collection ID"`
 }
 
 type DeleteBookmarkInput struct {
-	ID int `json:"id" jsonschema:"description=Bookmark ID to delete,required"`
+	ID int `json:"id" jsonschema:"Bookmark ID to delete"`
 }
 
 type SearchBookmarksInput struct {
-	Query      string   `json:"query" jsonschema:"description=Search query,required"`
-	Collection int      `json:"collection,omitempty" jsonschema:"description=Collection ID (0 for all)"`
-	Tags       []string `json:"tags,omitempty" jsonschema:"description=Filter by tags"`
-	Page       int      `json:"page,omitempty" jsonschema:"description=Page number (0-based)"`
-	PerPage    int      `json:"perpage,omitempty" jsonschema:"description=Items per page (max 50)"`
+	Query      string   `json:"query" jsonschema:"Search query"`
+	Collection int      `json:"collection,omitempty" jsonschema:"Collection ID (0 for all)"`
+	Tags       []string `json:"tags,omitempty" jsonschema:"Filter by tags"`
+	Page       int      `json:"page,omitempty" jsonschema:"Page number (0-based)"`
+	PerPage    int      `json:"perpage,omitempty" jsonschema:"Items per page (max 50)"`
 }
 
 type ListTagsInput struct {
-	Collection int `json:"collection,omitempty" jsonschema:"description=Collection ID (0 for all tags)"`
+	Collection int `json:"collection,omitempty" jsonschema:"Collection ID (0 for all tags)"`
 }
 
 // Formatting helpers
