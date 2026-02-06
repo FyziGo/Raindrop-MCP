@@ -36,7 +36,16 @@ Download from [GitHub Releases](https://github.com/FyziGo/Raindrop-MCP/releases/
 | `raindrop-mcp-docker.zip` | Docker image |
 | `raindrop-mcp.mcpb` | MCPB installer |
 
-### Option 2: Docker
+### Option 2: MCPB Installer
+
+```bash
+# Install using mcpb CLI
+mcpb install raindrop-mcp.mcpb
+```
+
+Or double-click `raindrop-mcp.mcpb` if you have MCPB Desktop installed.
+
+### Option 3: Docker
 
 ```bash
 # From release (download and extract docker.zip first)
@@ -44,7 +53,7 @@ docker load -i raindrop-mcp-docker.tar
 docker run -i --rm -e RAINDROP_TOKEN=your_token raindrop-mcp
 ```
 
-### Option 3: Build from Source
+### Option 4: Build from Source
 
 ```bash
 git clone https://github.com/FyziGo/Raindrop-MCP.git
