@@ -27,7 +27,7 @@ A full-featured MCP (Model Context Protocol) server for [Raindrop.io](https://ra
 ## Installation
 
 ```bash
-git clone https://github.com/proveIT-ua/raindrop-mcp.git
+git clone https://github.com/FyziGo/Raindrop-MCP.git
 cd raindrop-mcp
 go build -o raindrop-mcp.exe .
 ```
