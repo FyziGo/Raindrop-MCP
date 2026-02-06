@@ -26,6 +26,19 @@ A full-featured MCP (Model Context Protocol) server for [Raindrop.io](https://ra
 
 ## Installation
 
+### Option 1: Docker (Recommended)
+
+```bash
+docker run -i --rm -e RAINDROP_TOKEN=your_token fyzigo/raindrop-mcp
+```
+
+Or via Docker Desktop MCP Toolkit:
+1. Open Docker Desktop → MCP Toolkit
+2. Search for "raindrop-mcp"
+3. Click Install and configure your API token
+
+### Option 2: Build from Source
+
 ```bash
 git clone https://github.com/FyziGo/Raindrop-MCP.git
 cd raindrop-mcp
@@ -39,6 +52,21 @@ go build -o raindrop-mcp.exe .
 3. Copy the access token
 
 ## Claude Desktop Config
+
+### With Docker
+
+```json
+{
+  "mcpServers": {
+    "raindrop": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "RAINDROP_TOKEN=your_token_here", "fyzigo/raindrop-mcp"]
+    }
+  }
+}
+```
+
+### With Binary
 
 Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
 
