@@ -1,0 +1,54 @@
+{
+  "manifest_version": "0.3",
+  "name": "raindrop-mcp",
+  "version": "2.0.0",
+  "description": "MCP server for Raindrop.io bookmark management - 20 tools for bookmarks, collections, tags, highlights",
+  "author": {
+    "name": "FyziGo",
+    "url": "https://github.com/FyziGo"
+  },
+  "repository": "https://github.com/FyziGo/Raindrop-MCP",
+  "server": {
+    "type": "binary",
+    "entry_point": "server/raindrop-mcp.exe",
+    "mcp_config": {
+      "command": "${__dirname}/server/raindrop-mcp.exe",
+      "args": [],
+      "env": {
+        "RAINDROP_TOKEN": "${user_config.api_token}"
+      }
+    }
+  },
+  "user_config": {
+    "api_token": {
+      "type": "string",
+      "title": "Raindrop API Token",
+      "description": "Get your token at https://app.raindrop.io/settings/integrations",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "tools": [
+    "create-bookmark",
+    "get-bookmark",
+    "update-bookmark",
+    "delete-bookmark",
+    "search-bookmarks",
+    "list-collections",
+    "create-collection",
+    "get-collection",
+    "update-collection",
+    "delete-collection",
+    "merge-collections",
+    "list-tags",
+    "rename-tag",
+    "delete-tags",
+    "merge-tags",
+    "suggest-tags",
+    "get-highlights",
+    "create-highlight",
+    "delete-highlight",
+    "get-filters",
+    "get-user"
+  ]
+}
