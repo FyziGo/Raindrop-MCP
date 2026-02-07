@@ -106,6 +106,9 @@ func RegisterExtendedTools(server *mcp.Server, client *api.Client) {
 		Name:        "merge-tags",
 		Description: "Merge multiple tags into one (first tag becomes the merged name)",
 	}, func(ctx context.Context, req *mcp.CallToolRequest, input MergeTagsInput) (*mcp.CallToolResult, TextOutput, error) {
+		if len(input.Tags) < 2 {
+			return nil, TextOutput{}, fmt.Errorf("at least 2 tags required for merge")
+		}
 		err := client.MergeTags(input.Collection, input.Tags)
 		if err != nil {
 			return nil, TextOutput{}, fmt.Errorf("failed to merge tags: %w", err)

@@ -61,28 +61,13 @@ cd raindrop-mcp
 go build -o raindrop-mcp.exe .
 ```
 
-## Get API Token
+## Authentication
 
 1. Go to https://app.raindrop.io/settings/integrations
-2. Create app or use "Test token"
-3. Copy the access token
+2. Scroll to "Test token" section
+3. Create and copy your token
 
 ## Claude Desktop Config
-
-### With Docker
-
-```json
-{
-  "mcpServers": {
-    "raindrop": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "RAINDROP_TOKEN=your_token_here", "fyzigo/raindrop-mcp"]
-    }
-  }
-}
-```
-
-### With Binary
 
 Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
 
@@ -98,6 +83,46 @@ Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/App
   }
 }
 ```
+
+### With Docker
+
+```json
+{
+  "mcpServers": {
+    "raindrop": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "RAINDROP_TOKEN=your_token_here", "fyzigo/raindrop-mcp"]
+    }
+  }
+}
+```
+
+<details>
+<summary>Advanced: OAuth2 Authentication</summary>
+
+For users who prefer OAuth2 (requires creating your own Raindrop app):
+
+1. Create app at https://app.raindrop.io/settings/integrations
+2. Get your Client ID and Client Secret
+3. Configure:
+
+```json
+{
+  "mcpServers": {
+    "raindrop": {
+      "command": "/path/to/raindrop-mcp.exe",
+      "env": {
+        "RAINDROP_CLIENT_ID": "your_client_id",
+        "RAINDROP_CLIENT_SECRET": "your_client_secret"
+      }
+    }
+  }
+}
+```
+
+On first run, browser opens for authorization. Token saved to `~/.raindrop-mcp/token.json`.
+
+</details>
 
 ## All Tools
 

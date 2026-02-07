@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"raindrop-mcp/types"
 )
@@ -133,8 +134,8 @@ func (c *Client) GetUser() (*types.User, error) {
 }
 
 // SuggestTags suggests tags for a URL
-func (c *Client) SuggestTags(url string) ([]string, error) {
-	respBody, err := c.makeRequest("GET", fmt.Sprintf("/tags/suggest?url=%s", url), nil)
+func (c *Client) SuggestTags(inputURL string) ([]string, error) {
+	respBody, err := c.makeRequest("GET", fmt.Sprintf("/tags/suggest?url=%s", url.QueryEscape(inputURL)), nil)
 	if err != nil {
 		return nil, err
 	}

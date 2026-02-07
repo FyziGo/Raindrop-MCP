@@ -1,8 +1,8 @@
 {
   "manifest_version": "0.3",
   "name": "raindrop-mcp",
-  "version": "2.0.0",
-  "description": "MCP server for Raindrop.io bookmark management - 20 tools for bookmarks, collections, tags, highlights",
+  "version": "2.1.0",
+  "description": "MCP server for Raindrop.io bookmark management - 20 tools for bookmarks, collections, tags, highlights. Supports OAuth2 and test token authentication.",
   "author": {
     "name": "FyziGo",
     "url": "https://github.com/FyziGo"
@@ -15,7 +15,9 @@
       "command": "${__dirname}/server/raindrop-mcp.exe",
       "args": [],
       "env": {
-        "RAINDROP_TOKEN": "${user_config.api_token}"
+        "RAINDROP_TOKEN": "${user_config.api_token}",
+        "RAINDROP_CLIENT_ID": "${user_config.client_id}",
+        "RAINDROP_CLIENT_SECRET": "${user_config.client_secret}"
       }
     }
   },
@@ -23,9 +25,22 @@
     "api_token": {
       "type": "string",
       "title": "Raindrop API Token",
-      "description": "Get your token at https://app.raindrop.io/settings/integrations",
+      "description": "Test token for personal use. Get at https://app.raindrop.io/settings/integrations",
       "sensitive": true,
-      "required": true
+      "required": false
+    },
+    "client_id": {
+      "type": "string",
+      "title": "OAuth Client ID",
+      "description": "OAuth2 Client ID for browser-based authentication (optional)",
+      "required": false
+    },
+    "client_secret": {
+      "type": "string",
+      "title": "OAuth Client Secret",
+      "description": "OAuth2 Client Secret (required if using OAuth)",
+      "sensitive": true,
+      "required": false
     }
   },
   "tools": [

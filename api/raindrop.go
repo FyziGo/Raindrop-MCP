@@ -8,11 +8,15 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 
 	"raindrop-mcp/types"
 )
 
 const baseURL = "https://api.raindrop.io/rest/v1"
+
+// Maximum response size (10MB)
+const maxResponseSize = 10 * 1024 * 1024
 
 // Client is the Raindrop.io API client
 type Client struct {
@@ -23,8 +27,10 @@ type Client struct {
 // NewClient creates a new Raindrop API client
 func NewClient(token string) *Client {
 	return &Client{
-		token:      token,
-		httpClient: &http.Client{},
+		token: token,
+		httpClient: &http.Client{
+			Timeout: 30 * time.Second,
+		},
 	}
 }
 
@@ -53,7 +59,7 @@ func (c *Client) makeRequest(method, endpoint string, body any) ([]byte, error) 
 	}
 	defer resp.Body.Close()
 
-	respBody, err := io.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(io.LimitReader(resp.Body, maxResponseSize))
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
@@ -108,7 +114,7 @@ func (c *Client) GetRaindrop(id int) (*types.Raindrop, error) {
 // UpdateRaindrop updates an existing bookmark
 func (c *Client) UpdateRaindrop(id int, title, note string, tags []string, collectionID *int) (*types.Raindrop, error) {
 	reqBody := types.UpdateRaindropRequest{}
-	
+
 	if title != "" {
 		reqBody.Title = title
 	}
