@@ -1,7 +1,7 @@
 # 🌧️ Raindrop MCP Server
 
-> ## ⚠️ ALPHA VERSION
-> **This is an early alpha release! Features may be incomplete, APIs may change, and bugs are expected.**
+> ## ⚠️ BETA VERSION
+> **This is a beta release! Features may be incomplete, APIs may change, and bugs are expected.**
 > **Use at your own risk. Feedback and contributions welcome!**
 
 ---
