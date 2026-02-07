@@ -60,7 +60,6 @@ jobs:
         run: |
           docker build -t raindrop-mcp:latest .
           docker save raindrop-mcp:latest -o raindrop-mcp-docker.tar
-          zip raindrop-mcp-docker.zip raindrop-mcp-docker.tar
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -70,7 +69,7 @@ jobs:
             raindrop-mcp.exe
             raindrop-mcp-linux.tar.gz
             raindrop-mcp.deb
-            raindrop-mcp-docker.zip
+            raindrop-mcp-docker.tar
 
   release:
     needs: build
@@ -90,7 +89,7 @@ jobs:
             raindrop-mcp.exe
             raindrop-mcp-linux.tar.gz
             raindrop-mcp.deb
-            raindrop-mcp-docker.zip
+            raindrop-mcp-docker.tar
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
