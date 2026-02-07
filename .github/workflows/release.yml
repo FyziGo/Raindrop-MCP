@@ -19,13 +19,39 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Build Linux binary
-        run: |
-          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o raindrop-mcp-linux .
-
       - name: Build Windows binary
         run: |
           CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o raindrop-mcp.exe .
+
+      - name: Build Linux binary
+        run: |
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o raindrop-mcp .
+
+      - name: Create Linux tarball
+        run: |
+          mkdir -p raindrop-mcp-linux
+          cp raindrop-mcp raindrop-mcp-linux/
+          cp README.md raindrop-mcp-linux/
+          tar -czvf raindrop-mcp-linux.tar.gz raindrop-mcp-linux
+
+      - name: Create .deb package
+        run: |
+          mkdir -p deb/usr/local/bin
+          mkdir -p deb/DEBIAN
+          cp raindrop-mcp deb/usr/local/bin/
+          chmod +x deb/usr/local/bin/raindrop-mcp
+          cat > deb/DEBIAN/control << EOF
+          Package: raindrop-mcp
+          Version: ${GITHUB_REF_NAME#v}
+          Section: utils
+          Priority: optional
+          Architecture: amd64
+          Maintainer: FyziGo <fyzigo@github.com>
+          Description: MCP server for Raindrop.io bookmark management
+           A full-featured MCP server with 20 tools for managing
+           bookmarks, collections, tags, and highlights.
+          EOF
+          dpkg-deb --build deb raindrop-mcp.deb
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -41,8 +67,9 @@ jobs:
         with:
           name: binaries
           path: |
-            raindrop-mcp-linux
             raindrop-mcp.exe
+            raindrop-mcp-linux.tar.gz
+            raindrop-mcp.deb
             raindrop-mcp-docker.zip
 
   release:
@@ -60,8 +87,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            raindrop-mcp-linux
             raindrop-mcp.exe
+            raindrop-mcp-linux.tar.gz
+            raindrop-mcp.deb
             raindrop-mcp-docker.zip
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
         env:
